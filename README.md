@@ -56,7 +56,7 @@ private readonly ICachingManager _cachingController;
 
 public YourConstructor(ICachingManager cachingController)
 {
-	_cachingController = cachingController;
+		_cachingController = cachingController;
 }
 
 public object YourMethod()
