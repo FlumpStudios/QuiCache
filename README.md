@@ -1,7 +1,7 @@
 ﻿<h1>QicCache</h1>
 <p>Caching library to simplify caching in .NET Core 2.2+</p>
 <h2>Info</h2>
-<p>QicCache is a library to help keep memory and distributed cache in .NET as simple and clean as possible. QicCache abstracts out the caching and allows for easy setup, configuration and switching between caching types.</p>
+<p>QicCache is a library to help keep memory and distributed cache as simple and clean as possible in .NET. QicCache abstracts out the caching and allows for easy setup, configuration and switching between caching types.</p>
 <h2>Setup</h2>
 <h4>Add memory cache -<small> only needed if memory cache or double cache is to be used</small></h4>
 <ul>
