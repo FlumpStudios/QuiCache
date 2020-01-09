@@ -49,34 +49,30 @@ services.AddCachingManager(cachingType,
 <h2>Application</h2>
 <h4>Basic usage</h4>
 <p>Now you're all setup, this bit should be easy. Basically, you need to check if there's any data in the cache based on your cache key, if there isn't, then you need to get the data from you data source and update the cache with the new data. So how do we do this? Here's a basic example.</p>
-<code>
-CacheKeysEnum yourCacheKey = CacheKeys.Foo;
+<pre>
+
 
 private readonly ICachingManager _cachingController;
 
 public YourConstructor(ICachingManager cachingController)
-{
 	_cachingController = cachingController;
-}
+
 
 public object YourMethod()
 {
+	CacheKeysEnum yourCacheKey = CacheKeys.Foo;
 	//Check the cache store first
 	var cachedData =  await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(yourCacheKey);
-
 	//If there's data in the cache store return data
 	if (cachedData != null) return cachedData;
-
 	//If not data in cache, get the data from the data source
 	var dataFromDataSource = await _repository.YourData();
-
 	//Update the cache with the new data
 	_cachingController.SetCache(dataFromDataSource, yourCacheKey);
-
 	//Return the data
 	return dataFromDataSource;
 }
-</code>
+</pre>
 
 <p>As the SetCache methods returns the object that is passed to it, you can be one of the cool kids and use the null-coalescing operator to get and set the cache. So the above cached method becomes...</p>
 <pre>	
