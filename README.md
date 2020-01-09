@@ -3,13 +3,13 @@
 <h2>Info</h2>
 <p>QicCache is a library to help keep memory and distributed cache as simple and clean as possible in .NET Core. QicCache abstracts out the caching and allows for easy setup, configuration and switching between caching types.</p>
 <h2>Setup</h2>
-<h4>Add memory cache -<small> only needed if memory cache or double cache is to be used</small></h4>
+<h4>Add memory cache - <small> (only needed if memory cache or double cache is to be used)</small></h4>
 <ul>
 <li>Install Microsoft caching by running the following in the package manager console: <code>Install-Package System.Runtime.Caching -Version 4.7.0</code></li>
 <li>Add the memory cache service in the <code>ConfigureServices</code> method in your startup class: <code>services.AddMemoryCache();</code></li>
 </ul>
 <p>That should be the memory cache all setup, nice and simple. If you need more in-depth instructions or are still having problems, check out the full memory cache docs <a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2" target="_blank" rel="noopener"> here </a></p>
-<h4>Add distributed cache -<small> only needed if distributed cache or double cache is to be used</small></h4>
+<h4>Add distributed cache -<small> (only needed if distributed cache or double cache is to be used)</small></h4>
 <p>There are 3 types of distributed cache that can be used with QicCache, distributed memory cache, SQL cache or Redis Cache. I would recommend using Redis cache, so I will only go through the setup process for Redis cache. If you would like to use SQL or distributed memory, please follow the official .NET distributed cache documentation <a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-2.2" target="_blank" rel="noopener"> here </a></p>
 <p>Here are the steps to get Redis cache up and running</p>
 <ul>
