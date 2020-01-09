@@ -41,7 +41,7 @@ services.AddCachingManager(cachingType,
 	    options.DefaultTimeSpan = TimeSpan.FromMinutes(30);
 	},
 	2040);
-  </pre>
+</pre>
 </li>
 </ul>
 <p>OK, that should be all the setup out of the way, you should now be ready to add caching to your project.</p>
