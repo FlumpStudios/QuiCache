@@ -56,6 +56,7 @@ public YourConstructor(ICachingManager cachingController)
 {
 	_cachingController = cachingController;
 }
+
 public object YourMethod()
 {
 
@@ -76,6 +77,7 @@ public object YourMethod()
 	
 	//Return the data
 	return dataFromDataSource;
+
 }
 </pre>
 
