@@ -17,7 +17,7 @@
 <li>Start the Redis service. This should have been covered in the above guides, but basically you need to restart the service with <code>sudo service redis-server restart</code> then run <code>redis-cli</code></li>
 <li>That's your Redis store all set up, now you need to install the Redis caching package in your project. Run <code>Install-Package Microsoft.Extensions.Caching.StackExchangeRedis -Version 3.1.0</code> in the package manager console.</li>
 <li>Now register the Redis Service in the <code>ConfigureServices&nbsp;</code>method of your service class
-<pre>                
+<pre>
 services.AddDistributedRedisCache(option =&gt;
 {
 	option.Configuration = "127.0.0.1";
@@ -32,7 +32,7 @@ services.AddDistributedRedisCache(option =&gt;
 <li>Add the QuiCache service in the <code>ConfigureServices</code> method in your startup class: <code>services.AddCachingManager(CachingType.MemoryCache)</code></li>
 <li>Select which type of caching you would like. CachingType is an Enum that gives you three options, MemoryCache, Distributed Cache or Double Cache*.</li>
 <li>Configure your caching. The <code>AddCachingManager</code> method takes 2 optional arguments to configure your store, the first optional argument takes an action delegate which allows you to set up interval type, default memory cache size, and default Timespan. The second default argument allows you to set a default memory cache size limit. Here's an example
-<pre>          
+<pre>
 services.AddCachingManager(cachingType,
 	options =&gt; 
 	{
