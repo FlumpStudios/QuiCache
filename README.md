@@ -124,7 +124,7 @@ T SetCache&lt;T, T2&gt;(T obj, T2 key, TimeSpan? timeSpan = null, bool useRollin
 <li><a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-2.2" target="_blank" rel="noopener">Add distributed cache to .NET</a></li>
 <li>Add QuiCache cachingManager to startup class like this - <code>services.AddCachingManager(cachingType);</code></li>
 <li>Inject into class where you want to cache data. Like this...
-<pre>	
+<pre>
 private readonly ICachingManager _cachingController; 	
 public YourConstructor(ICachingManager cachingController)
 {
