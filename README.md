@@ -4,6 +4,9 @@
 <p>QicCache is a library to help keep memory and distributed cache as simple and clean as possible in .NET Core. QicCache abstracts out the caching and allows for easy setup, configuration and switching between caching types.</p>
 <h2>Setup</h2>
 <p>There's a little bit of setup involved, if you can't be bothered with the step by step guide, check our the quick rundown in the summary at the bottom of the page.</p>
+<p>
+	So here's how you setup and use QuiCache...
+</p>
 <h4>Add memory cache - <small> (only needed if memory cache or double cache is to be used)</small></h4>
 <ul>
 <li>Install Microsoft caching by running the following in the package manager console: <code>Install-Package System.Runtime.Caching -Version 4.7.0</code></li>
