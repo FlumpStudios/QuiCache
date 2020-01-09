@@ -17,12 +17,13 @@
 <li>Start the Redis service. This should have been covered in the above guides, but basically you need to restart the service with <code>sudo service redis-server restart</code> then run <code>redis-cli</code></li>
 <li>That's your Redis store all set up, now you need to install the Redis caching package in your project. Run <code>Install-Package Microsoft.Extensions.Caching.StackExchangeRedis -Version 3.1.0</code> in the package manager console.</li>
 <li>Now register the Redis Service in the <code>ConfigureServices&nbsp;</code>method of your service class
-<pre>                services.AddDistributedRedisCache(option =&gt;
-            {
-                option.Configuration = "127.0.0.1";
-                option.InstanceName = "master";
-            });
-  </pre>
+<pre>                
+services.AddDistributedRedisCache(option =&gt;
+{
+	option.Configuration = "127.0.0.1";
+	option.InstanceName = "master";
+});
+</pre>
 </li>
 </ul>
 <p>OK, that should be it for setting up your Redis cache. If you have any problems, check out the official Redis docs <a href="https://redis.io/documentation" target="_blank" rel="noopener">here</a>, or the official .NET distributed cache docs <a href=" &lt;a href=" target="_blank" rel="noopener">Here</a></p>
@@ -82,7 +83,6 @@ public Object YourMethod()
 public Object YourMethod()
 {
 	CacheKeysEnum yourCacheKey = CacheKeys.Foo;
-
 	return 
 		await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
 		?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);
@@ -121,8 +121,7 @@ public Object YourMethod()
 <li>Add QuiCache cachingManager to startup class like this - <code>services.AddCachingManager(cachingType);</code></li>
 <li>Inject into class where you want to cache data. Like this...
 <pre>	
-private readonly ICachingManager _cachingController;
- 	
+private readonly ICachingManager _cachingController; 	
 public YourConstructor(ICachingManager cachingController)
 {
 	_cachingController = cachingController;
@@ -131,8 +130,8 @@ public YourConstructor(ICachingManager cachingController)
 </li>
 <li>Cache your data, like this...
 <pre>    
-	await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
-	?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);
+await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
+?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);
 </pre>
 </li>
 </ul>
