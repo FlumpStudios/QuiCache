@@ -104,8 +104,9 @@ public Object YourMethod()
 <p>If you require more control over a cache entry, you can inject the caching manager via the IConfigurableCacheManager interface instead of the ICachingManager interface.</p>
 <p>This exposes an overflow method for SetCache which allows you to set the cache with some additional options.</p>
 <p>Here is the signature of the overflow method.</p>
-<pre>   T SetCache&lt;T, T2&gt;(T obj, T2 key, TimeSpan? timeSpan = null, bool useRollingInterval = false, int? entrySize = null);
-   </pre>
+<pre>
+T SetCache&lt;T, T2&gt;(T obj, T2 key, TimeSpan? timeSpan = null, bool useRollingInterval = false, int? entrySize = null);
+</pre>
 <p>You already know the 2 first parameters, but what are the others?</p>
 <p><strong>TimeSpan - </strong>This allows you to specify how long you would like the entry to live in the cache.</p>
 <p><strong>useRollingInterval - </strong> This allows you to use a rolling interval for the entry</p>
@@ -129,7 +130,7 @@ public YourConstructor(ICachingManager cachingController)
 </pre>
 </li>
 <li>Cache your data, like this...
-<pre>    
+<pre>
 await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
 ?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);
 </pre>
