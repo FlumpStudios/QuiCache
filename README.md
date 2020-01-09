@@ -31,14 +31,15 @@
 <li>Add the QuiCache service in the <code>ConfigureServices</code> method in your startup class: <code>services.AddCachingManager(CachingType.MemoryCache)</code></li>
 <li>Select which type of caching you would like. CachingType is an Enum that gives you three options, MemoryCache, Distributed Cache or Double Cache*.</li>
 <li>Configure your caching. The <code>AddCachingManager</code> method takes 2 optional arguments to configure your store, the first optional argument takes an action delegate which allows you to set up interval type, default memory cache size, and default Timespan. The second default argument allows you to set a default memory cache size limit. Here's an example
-<pre>          services.AddCachingManager(cachingType,
-                options =&gt; 
-                {
-                    options.UseTollingIntervalAsDefault = true;
-                    options.DefaultMemoryEntryCacheSize = 1;
-                    options.DefaultTimeSpan = TimeSpan.FromMinutes(30);
-                },
-                 2040);
+<pre>          
+services.AddCachingManager(cachingType,
+	options =&gt; 
+	{
+	    options.UseTollingIntervalAsDefault = true;
+	    options.DefaultMemoryEntryCacheSize = 1;
+	    options.DefaultTimeSpan = TimeSpan.FromMinutes(30);
+	},
+	2040);
   </pre>
 </li>
 </ul>
@@ -47,43 +48,45 @@
 <h2>Application</h2>
 <h4>Basic usage</h4>
 <p>Now you're all setup, this bit should be easy. Basically, you need to check if there's any data in the cache based on your cache key, if there isn't, then you need to get the data from you data source and update the cache with the new data. So how do we do this? Here's a basic example.</p>
-<pre>	CacheKeysEnum yourCacheKey = CacheKeys.Foo;
-
-	private readonly ICachingManager _cachingController;
- 	
-	public YourConstructor(ICachingManager cachingController)
-	{
-		_cachingController = cachingController;
-	}
+<pre>	
 	
-    public Object YourMethod()
-	{
-		//Check the cache store first
-		var cachedData =  await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(yourCacheKey);
+CacheKeysEnum yourCacheKey = CacheKeys.Foo;
 
-		//If there's data in the cache store return data
-		if (cachedData != null) return cachedData;
+private readonly ICachingManager _cachingController;
 
-		//If not data in cache, get the data from the data source
-		var dataFromDataSource = await _repository.YourData();
+public YourConstructor(ICachingManager cachingController)
+{
+	_cachingController = cachingController;
+}
 
-		//Update the cache with the new data
-		_cachingController.SetCache(dataFromDataSource, yourCacheKey);
+public Object YourMethod()
+{
+	//Check the cache store first
+	var cachedData =  await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(yourCacheKey);
 
-		//Return the data
-		return dataFromDataSource;
-    }
+	//If there's data in the cache store return data
+	if (cachedData != null) return cachedData;
+
+	//If not data in cache, get the data from the data source
+	var dataFromDataSource = await _repository.YourData();
+
+	//Update the cache with the new data
+	_cachingController.SetCache(dataFromDataSource, yourCacheKey);
+
+	//Return the data
+	return dataFromDataSource;
+}
 </pre>
 <p>As the SetCache methods returns the object that is passed to it, you can be one of the cool kids and use the null-coalescing operator to get and set the cache. So the above cached method becomes...</p>
 <pre>	
-	public Object YourMethod()
-	{
-		CacheKeysEnum yourCacheKey = CacheKeys.Foo;
+public Object YourMethod()
+{
+	CacheKeysEnum yourCacheKey = CacheKeys.Foo;
 
-		return 
-			await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
-			?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);
-	}
+	return 
+		await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
+		?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);
+}
 </pre>
 
 <p>&nbsp;</p>
@@ -117,18 +120,20 @@
 <li><a href="https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-2.2" target="_blank" rel="noopener">Add distributed cache to .NET</a></li>
 <li>Add QuiCache cachingManager to startup class like this - <code>services.AddCachingManager(cachingType);</code></li>
 <li>Inject into class where you want to cache data. Like this...
-<pre>	private readonly ICachingManager _cachingController;
+<pre>	
+private readonly ICachingManager _cachingController;
  	
-	public YourConstructor(ICachingManager cachingController)
-	{
-		_cachingController = cachingController;
-	}
+public YourConstructor(ICachingManager cachingController)
+{
+	_cachingController = cachingController;
+}
 </pre>
 </li>
 <li>Cache your data, like this...
 <pre>    
-    	await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
-	?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);</pre>
+	await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum) 
+	?? _cachingController.SetCache(await _repository.YourData(),CacheKeysEnum);
+</pre>
 </li>
 </ul>
 <p>So that's pretty much it, hopefully, you can find this library useful.</p>
