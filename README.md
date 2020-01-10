@@ -1,6 +1,9 @@
 ﻿<a href="https://beerpay.io/FlumpStudios/QuiCache"> <img src="https://img.shields.io/beerpay/FlumpStudios/QuiCache"/></a>
  <a href="https://github.com/FlumpStudios/QuiCache/tree/v0.8.6-beta"> <img src="https://img.shields.io/github/v/tag/FlumpStudios/QuiCache?include_prereleases"/></a> 
- 
+
+ <a href="https://github.com/FlumpStudios/QuiCache/commit/d4cbf701ed965407ca0d99dd4469c8f83a816715"> <img src="https://img.shields.io/github/last-commit/FlumpStudios/QuiCache"/></a> 
+
+
  <h1>QicCache</h1>
 <p>Caching library to simplify caching in .NET Core 2.2+</p>
 <h2>Info</h2>
