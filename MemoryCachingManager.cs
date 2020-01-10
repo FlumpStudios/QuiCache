@@ -1,4 +1,12 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿/*--------------------------------------------------------------------------------*
+		   QuiCacher - a caching library for .NET core - By Paul Marrable
+            
+          This libary is free to use but please leave this comment here :)
+
+         Check out https://github.com/FlumpStudios/QuiCache for more details
+*---------------------------------------------------------------------------------*/
+
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*--------------------------------------------------------------------------------*
+		   QuiCacher - a caching library for .NET core - By Paul Marrable
+            
+          This libary is free to use but please leave this comment here :)
+
+         Check out https://github.com/FlumpStudios/QuiCache for more details
+*---------------------------------------------------------------------------------*/
+
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
@@ -10,7 +18,6 @@ namespace FiLogger.QuiCaching
     {
         public TimeSpan DefaultTimeSpan { get; set; }
         public bool UseTollingIntervalAsDefault { get; set; }
-        
         private readonly IDistributedCache _cache;
 
         private const string ENTRY_SIZE_EXCEPTION_MESSAGE = "Unable to set entry size on distributed cache";
