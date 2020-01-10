@@ -144,3 +144,8 @@ await _cachingController.GetCacheAsync&lt;YourObjectType, Enum&gt;(CacheKeysEnum
 </li>
 </ul>
 <p>So that's pretty much it, hopefully, you can find this library useful.</p>
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/FlumpStudios/QuiCache/badge.svg?style=beer-square)](https://beerpay.io/FlumpStudios/QuiCache)  [![Beerpay](https://beerpay.io/FlumpStudios/QuiCache/make-wish.svg?style=flat-square)](https://beerpay.io/FlumpStudios/QuiCache?focus=wish)
