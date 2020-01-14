@@ -25,7 +25,7 @@
 <li>The first step is to install Redis. You can find the installation guides here -&nbsp;<a href="https://redislabs.com/blog/redis-on-windows-10/" target="_blank" rel="noopener">Windows 10</a> / <a href="https://redis.io/topics/quickstart" target="_blank" rel="noopener"> Linux</a> / <a href="https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298" target="_blank" rel="noopener">Mac</a></li>
 <li>Start the Redis service. This should have been covered in the above guides, but basically you need to restart the service with <code>sudo service redis-server restart</code> then run <code>redis-cli</code></li>
 <li>That's your Redis store all set up, now you need to install the Redis caching package in your project. Run <code>Install-Package Microsoft.Extensions.Caching.StackExchangeRedis -Version 3.1.0</code> in the package manager console.</li>
-<li>Now register the Redis Service in the <code>ConfigureServices&nbsp;</code>method of your service class
+<li>Now register the Redis Service in the <code>ConfigureServices&nbsp;</code>method of your startup class
 <pre>
 services.AddDistributedRedisCache(option =&gt;
 {
@@ -54,12 +54,13 @@ services.AddCachingManager(cachingType,
 </li>
 </ul>
 <p>OK, that should be all the setup out of the way, you should now be ready to add caching to your project.</p>
-<p><small><strong>*</strong>Double cache will check the memory cache first, if there's nothing there it will check the distributed cache if there's data in the distributed cache but not the memory cache, the memory cache is updated with the distributed cache data. This maximises caching speed but comes at the cost of having fewer options when caching data. </small></p>
+<p><small><strong>*</strong>Double cache will check the memory cache first, if there's nothing in the cahce, it will check the distributed cache. If there's data in the distributed cache but not the memory cache, the memory cache is updated with the distributed cache data. This maximises caching speed but comes at the cost of having fewer options when caching data. </small></p>
 <h2>Application</h2>
 <h4>Basic usage</h4>
 <p>Now you're all setup, this bit should be easy. Basically, you need to check if there's any data in the cache based on your cache key, if there isn't, then you need to get the data from you data source and update the cache with the new data. So how do we do this? Here's a basic example.</p>
 
 <pre>
+//Inject the caching controller into your class
 private readonly ICachingManager _cachingController;
 public YourConstructor(ICachingManager cachingController)
 {
@@ -69,7 +70,7 @@ public YourConstructor(ICachingManager cachingController)
 public object YourMethod()
 {
 
-	//You'll need a cache key. Enums are good for this.	
+	//You'll need a cache key, any stringable object will work but I recommend using Enums.	
 	CacheKeysEnum yourCacheKey = CacheKeys.Foo;
 
 	//Check the cache store first
@@ -106,7 +107,7 @@ public Object YourMethod()
 <p>As you may have guessed, this is the method we use to retrieve data from the cache-store. This function takes two generic type parameters, the object type, and the cache key type.</p>
 <p>You can use any stringable object as a cache key, but I would recommend using enums as this reduces the chance of typos and clashing keys. If there is no data in the store, the methods will return null.</p>
 <h4>The SetCacheAsync method</h4>
-<p>This is where we set our data int he cache-store. This function has 2 mandatory parameters, the object you are caching and the cache key.</p>
+<p>This is where we set our data in the cache-store. This function has 2 mandatory parameters, the object you are caching and the cache key.</p>
 <p>This method returns the request cache object</p>
 <h4>The RemoveCache Method</h4>
 <p>This method removes cache from the store based on the cache key. This method takes a parameter list of keys and removes any data in the store that matches the passed keys.</p>
