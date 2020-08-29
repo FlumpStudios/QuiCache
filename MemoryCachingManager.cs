@@ -174,9 +174,14 @@ namespace FiLogger.QuiCaching
             var cacheEntryOptions = new MemoryCacheEntryOptions().SetSize(entrySize);
 
             if (useRollingInterval)
+            {
                 cacheEntryOptions.SetSlidingExpiration(timeSpan);
+            }
             else
-                cacheEntryOptions.SetAbsoluteExpiration(timeSpan);
+            {
+                var expiration = DateTime.Now + timeSpan;
+                cacheEntryOptions.SetAbsoluteExpiration(expiration);
+            }
 
             return cacheEntryOptions;
         }
