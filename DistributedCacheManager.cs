@@ -129,14 +129,19 @@ namespace FiLogger.QuiCaching
         /// Set the caching options
         /// </summary>
         private DistributedCacheEntryOptions GetCachingOption(
-            bool _useRollingInterval,
-            TimeSpan _timeSpan)
+            bool useRollingInterval,
+            TimeSpan timeSpan)
         {
             var cacheEntryOptions = new DistributedCacheEntryOptions();
-            if (_useRollingInterval)
-                cacheEntryOptions.SetSlidingExpiration(_timeSpan);
+            if (useRollingInterval)
+            {
+                cacheEntryOptions.SetSlidingExpiration(timeSpan);
+            }
             else
-                cacheEntryOptions.SetAbsoluteExpiration(_timeSpan);
+            {
+                var expiration = DateTime.Now + timeSpan;
+                cacheEntryOptions.SetAbsoluteExpiration(expiration);
+            }
 
             return cacheEntryOptions;
         }
