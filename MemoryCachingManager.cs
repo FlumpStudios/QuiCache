@@ -17,7 +17,7 @@ namespace FiLogger.QuiCaching
     {
         private readonly IMemoryCache _cache;        
         public TimeSpan DefaultTimeSpan { get; set; }
-        public bool UseTollingIntervalAsDefault { get; set; }
+        public bool UseRollingIntervalAsDefault { get; set; }
         public int DefaultMemoryEntryCacheSize { get; set; }
 
         public MemoryCachingManager(
@@ -26,7 +26,7 @@ namespace FiLogger.QuiCaching
         {
             _cache = cache.Cache;
             DefaultTimeSpan = cachingOptions.Value.DefaultTimeSpan ?? TimeSpan.FromHours(1);
-            UseTollingIntervalAsDefault = cachingOptions.Value.UseTollingIntervalAsDefault;
+            UseRollingIntervalAsDefault = cachingOptions.Value.UseRollingIntervalAsDefault;
             DefaultMemoryEntryCacheSize = cachingOptions.Value.DefaultMemoryEntryCacheSize ?? 1;
         }
 
@@ -64,7 +64,7 @@ namespace FiLogger.QuiCaching
              cacheKey.ToString(),
                 obj,
                 GetCachingOption(
-                    UseTollingIntervalAsDefault,
+                    UseRollingIntervalAsDefault,
                     DefaultTimeSpan,
                     DefaultMemoryEntryCacheSize));
 

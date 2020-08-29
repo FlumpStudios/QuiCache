@@ -17,7 +17,7 @@ namespace FiLogger.QuiCaching
     public class DistributedCacheManager : IConfigurableCacheManager
     {
         public TimeSpan DefaultTimeSpan { get; set; }
-        public bool UseTollingIntervalAsDefault { get; set; }
+        public bool UseRollingIntervalAsDefault { get; set; }
         private readonly IDistributedCache _cache;
 
         private const string ENTRY_SIZE_EXCEPTION_MESSAGE = "Unable to set entry size on distributed cache";
@@ -29,7 +29,7 @@ namespace FiLogger.QuiCaching
         {
             _cache = cache;
             DefaultTimeSpan = cachingOptions.Value.DefaultTimeSpan ?? TimeSpan.FromHours(1);
-            UseTollingIntervalAsDefault = cachingOptions.Value.UseTollingIntervalAsDefault;
+            UseRollingIntervalAsDefault = cachingOptions.Value.UseRollingIntervalAsDefault;
         }
 
         #region GET Methods
@@ -76,7 +76,7 @@ namespace FiLogger.QuiCaching
                 cacheKey.ToString(),
                 SerialiseObject(obj),
                  GetCachingOption(
-                    UseTollingIntervalAsDefault,
+                    UseRollingIntervalAsDefault,
                     DefaultTimeSpan));
 
             return obj;

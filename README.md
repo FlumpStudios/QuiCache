@@ -45,7 +45,7 @@ services.AddDistributedRedisCache(option =&gt;
 services.AddCachingManager(cachingType,
 	options =&gt; 
 	{
-	    options.UseTollingIntervalAsDefault = true;
+	    options.UseRollingIntervalAsDefault = true;
 	    options.DefaultMemoryEntryCacheSize = 1;
 	    options.DefaultTimeSpan = TimeSpan.FromMinutes(30);
 	},

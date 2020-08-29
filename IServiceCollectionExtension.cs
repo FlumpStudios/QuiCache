@@ -53,6 +53,6 @@ namespace FiLogger.QuiCaching
     {
         public TimeSpan? DefaultTimeSpan { get; set; }
         public int? DefaultMemoryEntryCacheSize { get; set; }
-        public bool UseTollingIntervalAsDefault { get; set; }
+        public bool UseRollingIntervalAsDefault { get; set; }
     }
 }
