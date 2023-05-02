@@ -1,5 +1,5 @@
 ﻿/*--------------------------------------------------------------------------------*
-		QuiCacher v0.8.6-beta - a caching library for .NET core - By Paul Marrable
+		QuiCacher v1.0.2 - a caching library for .NET - By Paul Marrable
             
           This libary is free to use but please leave this comment here :)
 
@@ -128,11 +128,12 @@ namespace FiLogger.QuiCaching
         /// <summary>
         /// Set the caching options
         /// </summary>
-        private DistributedCacheEntryOptions GetCachingOption(
+        private static DistributedCacheEntryOptions GetCachingOption(
             bool useRollingInterval,
             TimeSpan timeSpan)
         {
             var cacheEntryOptions = new DistributedCacheEntryOptions();
+            
             if (useRollingInterval)
             {
                 cacheEntryOptions.SetSlidingExpiration(timeSpan);
@@ -146,7 +147,7 @@ namespace FiLogger.QuiCaching
             return cacheEntryOptions;
         }
 
-        private string SerialiseObject<T>(T obj) =>
+        private static string SerialiseObject<T>(T obj) =>
             JsonConvert.SerializeObject(
                     obj,
                     new JsonSerializerSettings

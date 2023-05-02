@@ -4,9 +4,9 @@
 
 
  <h1>QicCache</h1>
-<p>Caching library to simplify caching in .NET Core 3.1+</p>
+<p>Caching library to simplify caching in .NET 6.0 +</p>
 <h2>Info</h2>
-<p>QicCache is a library to help keep memory and distributed cache as simple and clean as possible in .NET Core. QicCache abstracts out the caching and allows for easy setup, configuration and switching between caching types.</p>
+<p>QicCache is a library to help keep memory and distributed cache as simple and clean as possible in .NET. QicCache abstracts out the caching and allows for easy setup, configuration and switching between caching types.</p>
 <h2>Setup</h2>
 <p>There's a little bit of setup involved, if you can't be bothered with the step by step guide, check our the quick rundown in the summary at the bottom of the page.</p>
 <p>
@@ -114,7 +114,7 @@ public Object YourMethod()
 <pre> _cachingController.RemoveCache(yourCacheKey.foo, yourCacheKey.bar. "String Key");
 </pre>
 <h4>IConfigurableCacheManager interface</h4>
-<p>If you require more control over a cache entry, you can inject the caching manager via the IConfigurableCacheManager interface instead of the ICachingManager interface.</p>
+<p>If you require more control over a cache entry, you can inject the caching manager via the IConfigurableCacheManager interface instead of the ICachingManager interface. Please note IConfigurableCacheManager is always injected as a singleton service </p>
 <p>This exposes an overflow method for SetCache which allows you to set the cache with some additional options.</p>
 <p>Here is the signature of the overflow method.</p>
 <pre>

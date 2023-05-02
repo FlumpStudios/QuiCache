@@ -1,5 +1,5 @@
 ﻿/*--------------------------------------------------------------------------------*
-		QuiCacher v0.8.6-beta - a caching library for .NET core - By Paul Marrable
+		QuiCacher v1.0.2 - a caching library for .NET - By Paul Marrable
             
           This libary is free to use but please leave this comment here :)
 
@@ -16,7 +16,7 @@ namespace FiLogger.QuiCaching.StaticHelpers
            object cacheKey,
            params T[] uids)
         {
-            List<string> x = new List<string>() { cacheKey.ToString() };
+            List<string> x = new() { cacheKey.ToString() };
             foreach (var uid in uids)
             {
                 x.Add(uid.ToString());

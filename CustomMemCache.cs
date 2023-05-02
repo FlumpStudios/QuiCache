@@ -1,5 +1,5 @@
 ﻿/*--------------------------------------------------------------------------------*
-		QuiCacher v0.8.6-beta - a caching library for .NET core - By Paul Marrable
+		QuiCacher v1.0.2 - a caching library for .NET - By Paul Marrable
             
           This libary is free to use but please leave this comment here :)
 
@@ -10,16 +10,23 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace FiLogger.QuiCaching
 {
-    public class FiLoggerMemCache : ICustomMemCache
+    public class CustomMemCache : ICustomMemCache
     {
         public MemoryCache Cache { get; set; }
 
-        public FiLoggerMemCache(int sizeLimit)
+        public CustomMemCache(int sizeLimit)
         {
-            Cache = new MemoryCache(new MemoryCacheOptions
+            if (sizeLimit > 0)
             {
-                SizeLimit = sizeLimit
-            });
+                Cache = new MemoryCache(new MemoryCacheOptions
+                {
+                    SizeLimit = sizeLimit
+                });
+            }
+            else
+            {
+                Cache = new MemoryCache(new MemoryCacheOptions());
+            }
         }
     }
 }

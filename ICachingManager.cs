@@ -1,5 +1,5 @@
 ﻿/*--------------------------------------------------------------------------------*
-		QuiCacher v0.8.6-beta - a caching library for .NET core - By Paul Marrable
+		QuiCacher v1.0.2 - a caching library for .NET - By Paul Marrable
             
           This libary is free to use but please leave this comment here :)
 
