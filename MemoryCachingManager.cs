@@ -1,5 +1,5 @@
 ﻿/*--------------------------------------------------------------------------------*
-		QuiCacher v1.0.2 - a caching library for .NET - By Paul Marrable
+		QuiCacher v1.0.5 - a caching library for .NET - By Paul Marrable
             
           This libary is free to use but please leave this comment here :)
 
@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
-namespace FiLogger.QuiCaching
+namespace QuiCaching
 {
     public class MemoryCachingManager : IConfigurableCacheManager
     {
